@@ -13,7 +13,13 @@ app.use(express.json());
 
 app.use(taskRoutes)
 
-
+// handling errors
+app.use((err, req, res, next) => {
+    return res.status(500).json({
+      status: "error",
+      message: err.message,
+    });
+  });
 
 
 app.listen(4000)
